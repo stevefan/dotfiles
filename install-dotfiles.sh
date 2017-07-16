@@ -16,6 +16,6 @@
 # Together this line gives all non-excluded-files in the current directory.
 # 'echo another-file >> excluded-files' to exclude additional files.
 for dotfile in $(comm -23 <(ls -a1) <(sort excluded-files) )
-do ln -s ../.$item $item
+do ln -s $PWD/$item $HOME/$item
 done
 
