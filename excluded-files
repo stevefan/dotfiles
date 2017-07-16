@@ -1,0 +1,9 @@
+# line items should not be classifier, e.g. don't signify a 'directory' as 'directory/'
+
+.
+..
+.git
+install-dotfiles.sh
+LICENSE
+README.md
+excluded-files
