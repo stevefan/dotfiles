@@ -6,4 +6,5 @@
 install-dotfiles.sh
 LICENSE
 README.md
-excluded-files
+excluded_files
+old_dotfiles

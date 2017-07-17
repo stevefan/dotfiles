@@ -23,8 +23,14 @@
 # echo another-file >> excluded-files' to exclude additional files.
 
 SCRIPTPATH="${BASH_SOURCE%/*}"
-EXCLUDED_FILES=$SCRIPTPATH/excluded-files
+EXCLUDED_FILES=$SCRIPTPATH/excluded_files
 
 for dotfile in $(comm -23 <(ls -a1 $SCRIPTPATH) <(sort $EXCLUDED_FILES) )
-do ln -sv $SCRIPTPATH/$dotfile $HOME/$dotfile
+do
+  if [ -f $HOME/$dotfile ]
+  then mv $HOME/$dotfile $SCRIPTPATH/old_dotfiles/$dotfile
+  fi
+  if [ -e ! $HOME/$dotfile ]
+  then ln -sv $SCRIPTPATH/$dotfile $HOME/$dotfile
+  fi
 done
