@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 #shall we check if we are in the right directory?
-#make file execuitable?
 #make script do different things in different contexts,
 #curl install & install from git
 #passing on curl+install for git clone & source install-dotfiles.sh
@@ -24,7 +23,19 @@
 # Together this line gives all non-excluded-files in the current directory.
 # echo another-file >> excluded-files' to exclude additional files.
 
-for dotfile in $(comm -23 <(ls -a1) <(sort excluded-files) )
-do ln -sv $PWD/$dotfile $HOME/$dotfile
-done
+SCRIPT=`realpath $0`
+SCRIPTPATH=`dirname $SCRIPT`
+
+echo $SCRIPT
+echo $SCRIPTPATH
+
+SCRIPTPATH=$( cd $(dirname $0) ; pwd -P )
+
+echo $SCRIPTPATH
+
+#echo $(comm -23 <(ls -a1) <(sort excluded-files) )
+#
+#for dotfile in $(comm -23 <(ls -a1) <(sort excluded-files) )
+#do ln -sv $PWD/$dotfile $HOME/$dotfile
+#done
 
