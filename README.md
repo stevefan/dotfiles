@@ -13,7 +13,7 @@ If a dotfile exists prior to the script execuiting, the script will mv it to the
 To organize dotfiles in folders, create a folder, add the folder name to excluded_files.txt, and create symlinks targeting ./dotfile/targeted-dotfiles.
 
 ```
-mkdir DOTFILE_ORGFOLDER && cd "$_" && echo "$_" >> excluded_files.txt
+mkdir DOTFILE_ORGFOLDER && echo "$_" >> excluded_files.txt && cd "$_" 
 ln -s ../TARGET_DOTFILE
 ```
 
