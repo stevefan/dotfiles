@@ -6,6 +6,6 @@
 install-dotfiles.sh
 LICENSE
 README.md
-excluded_files
-old_dotfiles
+excluded_files.txt
+old_dotfiles.d
 .gitignore
