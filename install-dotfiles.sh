@@ -22,9 +22,9 @@
 # Together this line gives all non-excluded-files in the current directory.
 # echo another-file >> excluded-files' to exclude additional files.
 
-SCRIPTPATH=$( cd $(dirname $0) ; pwd -P )
+SCRIPTPATH="${BASH_SOURCE%/*}"
+EXCLUDED_FILES=$SCRIPTPATH/excluded-files
 
-for dotfile in $(comm -23 <(ls -a1 $SCRIPTPATH) <(sort excluded-files) )
+for dotfile in $(comm -23 <(ls -a1 $SCRIPTPATH) <(sort $EXCLUDED_FILES) )
 do ln -sv $SCRIPTPATH/$dotfile $HOME/$dotfile
 done
-
