@@ -6,10 +6,10 @@ EXCLUDED_FILES=$SCRIPTPATH/excluded_files
 
 for dotfile in $(comm -23 <(ls -a1 $SCRIPTPATH) <(sort $EXCLUDED_FILES) )
 do
-  if [ -f $HOME/$dotfile ]
+  if [ -f "$HOME/$dotfile" -a ! -h "$HOME/$dotfile" ]
   then mv -v $HOME/$dotfile $SCRIPTPATH/old_dotfiles/$dotfile
   fi
-  if [ ! -e $HOME/$dotfile ]
+  if [ ! -e "$HOME/$dotfile" ]
   then ln -sv $SCRIPTPATH/$dotfile $HOME/$dotfile
   fi
 done
