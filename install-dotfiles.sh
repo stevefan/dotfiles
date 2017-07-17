@@ -8,6 +8,14 @@
 #determine the context of installation
 #determine which github based on ubuntu email?
 
+#philosophy & aim
+#easy deploy through salt state apply
+#easy manual deploy by hand
+#linux only, maybe as portable within reason (e.g. post 2014 platforms?)
+#idemipotent install
+#install overrides previous symlinks
+#maybe save old bashrc and files?
+#
 
 # 'ls -a1' sorted lists all files in the current directory outputting one per line.
 # 'sort excluded-files' sorted lists the lines in the file representative of non-dotfiles responsible for distribution or installation of dotfiles.
