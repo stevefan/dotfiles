@@ -8,3 +8,4 @@ LICENSE
 README.md
 excluded_files
 old_dotfiles
+.gitignore
