@@ -23,6 +23,9 @@
 # comm -23 compares inputs line by line and outputs unique lines in the first argument while excluding from output the unique lines in the second output and lines common to both.
 # Together this line gives all non-excluded-files in the current directory.
 # 'echo another-file >> excluded-files' to exclude additional files.
+
+#testupload
+
 for dotfile in $(comm -23 <(ls -a1) <(sort excluded-files) )
 do ln -s $PWD/$item $HOME/$item
 done
