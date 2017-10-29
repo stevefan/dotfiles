@@ -1,9 +1,9 @@
+"OBTAIN:
 "TODO Latex Plugin
 "TODO Python IDE
 "TODO Salt
 "TODO tags? tagbar
 "TODO blockit
-"TODO python.vim?
 "TODO tab completion? Supertab?
 "TODO ctrlp, file finder? command_T? nerd tree?
 "TODO vim templates for LATEX
@@ -11,8 +11,14 @@
 "TODO Commentary? comment out?
 "TODO repeat.vim?
 "TODO relatedde
+"TODO install virtualenv support https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/
+"TODO
 " Reference: https://www.youtube.com/watch?v=YhqsjUUHj6g&t=6s
 
+"POLISH:
+"TODO python.vim - get most current version?
+"
+"PRACTICE:
 """"""""""""""""""""""""""""""""""
 "BEFORE YOU DO ANYTHING WITH VIM:"
 " open and work through vimtutor "
@@ -26,6 +32,9 @@ set nocompatible
 " Specify a directory for plugins
 " Avoid using standard Vim directory names like 'plugins'
 call plug#begin('~/.vim/plugged')
+    "Tmux
+    Plug 'christoomey/vim-tmux-navigator'
+
     "Sane Defaults
     Plug 'tpope/vim-sensible'
     "Formatting
@@ -33,16 +42,19 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/vim-easy-align' "TODO tutorial
     Plug 'tmhedberg/SimpylFold'
     "Syntax
-    Plug 'scrooloose/syntastic' "TODO tutorial
+"    Plug 'scrooloose/syntastic' "TODO tutorial
 
     "Filesystem
     Plug 'scrooloose/nerdtree' "TODO tutorial
 
-    "Git 
+    "Git
     Plug 'tpope/vim-fugitive' "TODO tutorial
     "Python
+    Plug 'Valloric/YouCompleteMe' "TODO tutorial, install
     Plug 'vim-scripts/indentpython.vim' "TODO tutorial
     Plug 'nvie/vim-flake8' "TODO tutorial
+    Plug 'maxwell-k/vim-ipython'
+   " Plug 'ivanov/vim-ipython'
 
     "Color
     Plug 'jnurmine/Zenburn'
@@ -72,10 +84,12 @@ augroup END
 
 " VIM EDITOR:
 set number "Showing line numbers and length
+" set ruler
+set relativenumber
 set pastetoggle=<F2> " Better Copy and Paste
 " Use "+yy to yank to plus register for pasting wuth xterm_clipboard
-set clipboard=unnamed
-set mouse=a " Mouse 
+set clipboard=unnamedplus
+set mouse=a " Mouse
 set bs=2 " backspace
 set encoding=utf-8
 set cursorline " show a visual line under the cursor's current line
@@ -88,10 +102,18 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=233
 
 
+" Toggle Relative/Nonrelative on Focus/NoFocus
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+
 " COLOR SCHEME:
 if has('gui_running')
   set background=dark
-  colorscheme solarized
+  colorscheme zenburn_high_Contrast
 else
   let g:zenburn_high_Contrast=0
   colorscheme zenburn
@@ -114,6 +136,11 @@ map <Leader>m <esc>:tabnext<CR>
 vnoremap < <gv " better indentation
 vnoremap > >gv " better indentation
 
+" SPLIT NAVAGATION:
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " FOLDING:
 " Plug SimplyFold
@@ -150,29 +177,25 @@ set wildmenu
 " TODO determine and add contents
 
 
-" Begin PEP8 Compliance:
-" ----------------------
+" Begin Python Development:
+" -------------------------
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4 " for using >> or << commands
+set shiftround
+set expandtab
+set autoindent "redundant for sensible
+set fileformat=unix
+autocmd BufRead,BufNewFile *.py let python_highlight_all=1
+let g:ycm_python_binary_path = 'python' " active virtual_env aware
 
-au BufNewFile, BufRead *.py set tabstop=4
-au BufNewFile, BufRead *.py set softtabstop=4
-au BufNewFile, BufRead *.py set shiftwidth=4 " for using >> or << commands
-au BufNewFile, BufRead *.py set shiftround
-au BufNewFile, BufRead *.py set expandtab
-au BufNewFile, BufRead *.py set autoindent
-au BufNewFile, BufRead *.py set fileformat=unix
-
-" enable all Python syntax highlighting features
-let python_highlight_all = 1
-
-" --------------------
-" End PEP8 Compliance:
+source ~/.vim/plugged/vim-ipython/ftplugin/python/ipy.vim
+" -----------------------
+" End Python Development:
 
 
 " Full Stack Development:
-" https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/
-au BufNewFile,BufRead *.js, *.html, *.css set tabstop=2
-au BufNewFile,BufRead *.js, *.html, *.css set softtabstop=2
-au BufNewFile,BufRead *.js, *.html, *.css set shiftwidth=2
+" TODO:  https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/
 
 
 " Other Tricks:
