@@ -53,13 +53,15 @@ call plug#begin('~/.vim/plugged')
     Plug 'Valloric/YouCompleteMe' "TODO tutorial, install
     Plug 'vim-scripts/indentpython.vim' "TODO tutorial
     Plug 'nvie/vim-flake8' "TODO tutorial
-    Plug 'maxwell-k/vim-ipython'
-   " Plug 'ivanov/vim-ipython'
+    Plug 'stevefan/vim-ipython'
 
     "Color
     Plug 'jnurmine/Zenburn'
     Plug 'altercation/vim-colors-solarized'
     Plug 'tomasr/molokai'
+
+    "Remote Action
+    Plug 'zenbro/mirror.vim'
 " Initialize plugin system
 call plug#end()
 " Vim-Plug automatically execuits 'filetype plugin indent on'
@@ -121,12 +123,8 @@ endif
 
 
 " NAVAGATION COMMANDS:
-" Window Navagation
-" bind Ctrl+<movement> keys to move around the windows instead of Ctrl+w +<movement>
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-h> <c-w>h
-map <c-l> <c-w>l
+" using vim-tmux-navigation plugin
+
 " Tab Navagation
 map <Leader>n <esc>:tabprevious<CR>
 map <Leader>m <esc>:tabnext<CR>
@@ -136,11 +134,6 @@ map <Leader>m <esc>:tabnext<CR>
 vnoremap < <gv " better indentation
 vnoremap > >gv " better indentation
 
-" SPLIT NAVAGATION:
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
 " FOLDING:
 " Plug SimplyFold
