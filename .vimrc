@@ -40,28 +40,28 @@ call plug#begin('~/.vim/plugged')
     "Formatting
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'junegunn/vim-easy-align' "TODO tutorial
-    Plug 'tmhedberg/SimpylFold'
+    Plug 'tmhedberg/SimpylFold' "TODO find if compatable with python-mode, TODO do I need this?
     "Syntax
-"    Plug 'scrooloose/syntastic' "TODO tutorial
+    Plug 'scrooloose/syntastic' "TODO tutorial, do I need this?
 
     "Filesystem
-    Plug 'scrooloose/nerdtree' "TODO tutorial
+    Plug 'scrooloose/nerdtree' "TODO tutorial, TODO do I need this?
 
     "Git
     Plug 'tpope/vim-fugitive' "TODO tutorial
     "Python
-    Plug 'Valloric/YouCompleteMe' "TODO tutorial, install
-    Plug 'vim-scripts/indentpython.vim' "TODO tutorial
-    Plug 'nvie/vim-flake8' "TODO tutorial
+"    Plug 'Valloric/YouCompleteMe' "TODO tutorial, install
+"    Plug 'vim-scripts/indentpython.vim' "TODO tutorial
+"    Plug 'nvie/vim-flake8' "TODO tutorial
+    Plug 'python-mode/python-mode'
     Plug 'stevefan/vim-ipython'
+        "Disabled ipy_completefunc
 
     "Color
     Plug 'jnurmine/Zenburn'
     Plug 'altercation/vim-colors-solarized'
     Plug 'tomasr/molokai'
 
-    "Remote Action
-    Plug 'zenbro/mirror.vim'
 " Initialize plugin system
 call plug#end()
 " Vim-Plug automatically execuits 'filetype plugin indent on'
@@ -88,9 +88,6 @@ augroup END
 set number "Showing line numbers and length
 " set ruler
 set relativenumber
-set pastetoggle=<F2> " Better Copy and Paste
-" Use "+yy to yank to plus register for pasting wuth xterm_clipboard
-set clipboard=unnamedplus
 set mouse=a " Mouse
 set bs=2 " backspace
 set encoding=utf-8
@@ -103,6 +100,10 @@ set fo-=t  " dont' automatically wrap text when typing
 set colorcolumn=80
 highlight ColorColumn ctermbg=233
 
+" PASTING:
+set pastetoggle=<F2> " Better Copy and Paste
+" Use "+yy to yank to plus register for pasting wuth xterm_clipboard
+set clipboard=unnamedplus
 
 " Toggle Relative/Nonrelative on Focus/NoFocus
 augroup numbertoggle
@@ -124,6 +125,10 @@ endif
 
 " NAVAGATION COMMANDS:
 " using vim-tmux-navigation plugin
+
+" LEADER:
+let mapleader=","
+
 
 " Tab Navagation
 map <Leader>n <esc>:tabprevious<CR>
@@ -181,6 +186,9 @@ set autoindent "redundant for sensible
 set fileformat=unix
 autocmd BufRead,BufNewFile *.py let python_highlight_all=1
 let g:ycm_python_binary_path = 'python' " active virtual_env aware
+
+" PYTHON MODE NON DEFAULT OPTIONS:
+let g:pymode_python = 'python3'
 
 source ~/.vim/plugged/vim-ipython/ftplugin/python/ipy.vim
 " -----------------------
